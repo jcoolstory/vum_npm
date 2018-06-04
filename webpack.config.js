@@ -9,8 +9,8 @@ module.exports = {
   },
   entry: 
   {
-    'renderer/app':'./src/renderer/app.js',
-    'main/index':'./src/main/index.js'
+    'renderer/main':'./src/renderer/main.js',
+    'main/app':'./src/main/app.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),

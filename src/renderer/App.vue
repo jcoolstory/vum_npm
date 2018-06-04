@@ -1,17 +1,31 @@
 <template>
   <div id="app">
     <h1>{{ msg }}</h1>
+    <json-view v-bind:jsondata="jsondata"></json-view>
   </div>
 </template>
 
 <script>
+import fs from "fs";
+import jsonView from "./components/jsonView.vue";
 export default {
   name: 'app',
   data () {
     return {
+      jsondata : {},
       msg: 'Welcome to Your Vue.js App'
     }
   },
+  mounted : function() {
+    let files = fs.readdirSync('.').filter(f => f== "package.json")
+    console.log(files);
+    fs.readFile(files[0], 'utf8',(err,str)=> {
+      //console.log(txt);
+      this.jsondata = JSON.parse(str);
+    })
+  },components : 
+    {"json-view": jsonView}
+  
 }
 </script>
 

@@ -2,11 +2,12 @@
   "name": "npmrunner",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/main/index.js",
+  "main": "./dist/main/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babelbuild": "babel --out-dir .tmp src",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build--watch": "cross-env NODE_ENV=production webpack --watch --progress --hide-modules",
     "start": "electron ."
   },
   "author": "",

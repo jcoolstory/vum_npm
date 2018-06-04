@@ -1,9 +1,7 @@
+import Vue from 'vue'
+import App from './App.vue'
 
-let Vue = require("vue");
-
-var vueApp = new Vue({
-    el : "#app",
-    data : {
-        message : "안녕하세요 VUe!"
-    }
+new Vue({
+  el: '#app',
+  render: h => h(App)
 })

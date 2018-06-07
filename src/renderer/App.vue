@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <h1>{{ msg }}</h1>
+    
+    <package-explorer></package-explorer>
+      
+    <hr/>
     <json-view v-bind:jsondata="jsondata"></json-view>
   </div>
 </template>
@@ -8,24 +11,27 @@
 <script>
 import fs from "fs";
 import jsonView from "./components/jsonView.vue";
+import packageexplorerVue from './components/packageexplorer.vue';
 export default {
   name: 'app',
+
   data () {
     return {
       jsondata : {},
-      msg: 'Welcome to Your Vue.js App'
     }
   },
+
   mounted : function() {
     let files = fs.readdirSync('.').filter(f => f== "package.json")
-    console.log(files);
     fs.readFile(files[0], 'utf8',(err,str)=> {
-      //console.log(txt);
       this.jsondata = JSON.parse(str);
     })
-  },components : 
-    {"json-view": jsonView}
-  
+  },
+
+  components : {
+    "json-view": jsonView,
+    "package-explorer":packageexplorerVue
+  }
 }
 </script>
 
@@ -36,7 +42,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  font-size:1em;
 }
 
 h1, h2 {

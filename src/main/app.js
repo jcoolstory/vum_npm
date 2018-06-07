@@ -1,5 +1,5 @@
 var electron = require('electron');
-
+var { dialog } = require("electron");
 let win;
 function createWindow(){
     win = new electron.BrowserWindow();
@@ -29,3 +29,4 @@ app.on("activate", (_e, hasVisibledWindows) => {
     }
 })
 
+console.log(dialog)

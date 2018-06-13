@@ -5,13 +5,16 @@
       
     <hr/>
     <json-view v-bind:jsondata="jsondata"></json-view>
+    <script-list v-bind:jsondata="jsondata"></script-list>
   </div>
 </template>
 
 <script>
 import fs from "fs";
 import jsonView from "./components/jsonView.vue";
+import scriptlist from "./components/scriptList.vue";
 import packageexplorerVue from './components/packageexplorer.vue';
+import {ipcRenderer} from "electron";
 export default {
   name: 'app',
 
@@ -22,15 +25,19 @@ export default {
   },
 
   mounted : function() {
-    let files = fs.readdirSync('.').filter(f => f== "package.json")
-    fs.readFile(files[0], 'utf8',(err,str)=> {
-      this.jsondata = JSON.parse(str);
+    ipcRenderer.on("selectPath", (event,data)=>{
+        console.log(data);
+        let files = fs.readdirSync('.').filter(f => f== "package.json")
+        fs.readFile(files[0], 'utf8',(err,str)=> {
+          this.jsondata = JSON.parse(str);
+        })
     })
   },
 
   components : {
     "json-view": jsonView,
-    "package-explorer":packageexplorerVue
+    "package-explorer":packageexplorerVue,
+    "script-list": scriptlist
   }
 }
 </script>

@@ -1,12 +1,16 @@
 <template>
 <div>
-    {{commands}}
+    <h5>Command</h5>
     <ul>
         <li v-for="key in Object.keys(commands)"> 
             <button v-on:click="run(key)">{{key}}</button> 
         </li>
     </ul>
     <simple-command></simple-command>
+    <div>log</div>
+    <pre>
+        {{logs}}
+    <pre>
 </div>
 </template>
 <script>
@@ -15,11 +19,14 @@ import simpleCommand from "./simpleCommand.vue";
 export default {
   name: 'script-list',
   props : {
-      jsondata : Object
+      jsondata : Object,
+      strlog : ""
   },
   data (){
       return {
-          commands : []
+          commands : [],
+          logs: "empty",
+          strlog: "",
       }
   },
   watch : {
@@ -28,12 +35,19 @@ export default {
               var data =
               this.commands = this.jsondata["scripts"];//Object.keys(data).map(key => ({ [key]: data[key] }));
           }
-        }
+        },
+      strlog() {
+        this.logs = this.strlog;
+      }
   },
   methods :{
       run(command) {
-          console.log(this.commands[command]);
-          runCommand(command);
+          runCommand(command, (log)=> {
+            console.log(":: log", log);
+            this.strlog = this.strlog || ""
+            this.strlog += "\n" + log;
+
+          });
       }
   },
   components : {
@@ -48,5 +62,6 @@ div {
 ul {
     text-align : left;
     list-style: none;
+    padding: 5px;
 }
 </style>

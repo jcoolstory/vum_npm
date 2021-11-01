@@ -1,11 +1,14 @@
 import {exec,spawn} from "child_process"
-export default function run(command){
+export default function run(command, logout){
     
-    exec(`npm run ${command}`, (error, stdout, stderr) => {
+    //exec(`npm run ${command}`, (error, stdout, stderr) => {
+    exec(`yarn ${command}`, (error, stdout, stderr) => {
      //do whatever here
-        console.log("stdout : ",stdout);
-        console.error("error", error);
-        console.error("error", stderr);
+        //console.log("stdout : ",stdout);
+        //console.error("error", error);
+        //console.error("error", stderr);
+        logout(stdout)
+        logout(error)
     })
 }
 

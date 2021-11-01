@@ -23,7 +23,6 @@ export default {
   },
   methods :{
       run() {
-          //console.log(this.commands[command]);
           runCommand(this.createCommand(this.command));
       },
 

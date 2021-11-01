@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    
     <package-explorer></package-explorer>
-      
     <hr/>
     <json-view v-bind:jsondata="jsondata"></json-view>
+    <hr/>
     <script-list v-bind:jsondata="jsondata"></script-list>
   </div>
 </template>

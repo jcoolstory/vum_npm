@@ -3,7 +3,7 @@
     <ul>
         <li v-for="(value, key) in jsondata"> 
             <span>{{key}} :  </span> 
-            <span v-if="typeof(value) === 'object'" >["object"] 
+            <span v-if="typeof(value) === 'object'" > 
                 <json-view v-bind:jsondata="value"></json-view>  
             </span>
             <span v-else>{{ value }} </span>
